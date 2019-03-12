@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>遠見雜誌</title>
+
+    <style>
+        html {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            /* line-height: 62.5px; */
+        }
+
+        h3 {
+            font-size: 2.4rem;
+            font-weight: bolder;
+            margin: 0;
+        }
+
+        h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration-line: none;
+            color: black;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        .justify-content-center {
+            justify-content: center;
+        }
+
+        /* ----以下是nav---- */
+        .nav {
+            width: 100%;
+            height: 62.5px;
+            background: #ffc90c;
+            position: fixed;
+            top: 0;
+            z-index: 99;
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 1140px;
+            height: auto;
+        }
+
+        .nav-bar {
+            justify-content: space-between;
+            /* line-height: 62.5px; */
+        }
+
+        .logo {
+            height: 62.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu {
+            align-items: center;
+            /* line-height: 30px; */
+            /* margin: 0 10px; */
+        }
+
+        .menu li {
+            padding: 0px;
+            transition: .3s;
+        }
+        .menu li:hover{
+            text-shadow: 1px 1px .5px rgb(107, 107, 107) ;
+        }
+
+        .menu li:nth-child(-n+3)::after {
+            content: "|";
+            padding: 0 15px;
+        }
+
+        .menubar {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        .cross {
+            display: none;
+        }
+
+        .media {
+            padding-left: 5px;
+        }
+
+        .link {
+            padding-left: 15px;
+        }
+
+        /* -----以下是大圖區----- */
+        .main {
+            padding-top: 120px;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .section {
+            width: 100%;
+            height: 100vh;
+            background: url(img/main-img.png)center bottom no-repeat;
+            opacity: 0;
+            transition: 2s;
+        }
+
+        .title-1 {
+            width: 255px;
+            height: 135px;
+            overflow: hidden;
+        }
+
+        .title-1 img {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .text {
+            color: #fff;
+            text-align: center;
+            width: 70%;
+        }
+
+        .taiwan {
+            position: absolute;
+            right: 40px;
+            bottom: 40px;
+        }
+
+        .button {
+            width: 50px;
+            height: 30px;
+            border-radius: 40px;
+            background: #000;
+            line-height: 30px;
+            text-align: center;
+            color: #ffc90c;
+            cursor: pointer;
+            position: absolute;
+            right: 45%;
+            bottom: 28%;
+        }
+
+        .button:hover {
+            background: #fff;
+            color: #000;
+            transition: .5s;
+        }
+
+        /* ------以下是報導區------ */
+        .section2 {
+            width: 100%;
+            /* height: 1125px; */
+            height: auto;
+            background: #efefef;
+        }
+
+        .section2-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 50px;
+
+        }
+
+        .text-1 {
+            text-align: center;
+            margin-top: 70px;
+
+        }
+
+        .text-2 {
+            width: 796px;
+            line-height: 28px;
+        }
+
+        .line {
+            width: 5%;
+            height: 5px;
+            border: none;
+            background: #ffc90c;
+        }
+
+
+        .section3 {
+            width: 100%;
+            height: auto;
+            background: #ebebeb;
+        }
+
+        .box {
+            margin: 70px 20px;
+            width: 33%;
+            height: 410px;
+            background: #fff;
+            position: relative;
+            cursor: pointer;
+            transition: .5s;
+        }
+
+        .box:hover {
+            transform: scale(1.05, 1.05);
+            box-shadow: 0 3px 20px #bbb;
+        }
+
+        .tag {
+            width: 85px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            background: #ffc90c;
+            color: #000;
+            position: relative;
+            top: -37px;
+        }
+
+        .h-group {
+            border-left: 5px solid #ffc90c;
+            margin: -15px 20px;
+            border-left: 5px solid #ffc90c;
+            padding-left: 10px;
+            line-height: 24px;
+        }
+
+        .content {
+            font-size: 16px;
+            line-height: 28px;
+            margin: 0px 20px;
+            font-weight: 200;
+        }
+
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .top {
+            display: none;
+        }
+
+
+        /* 以下是footer */
+        .footer {
+            width: 100%;
+            height: 120px;
+            background: #000;
+        }
+
+        .footer p {
+            margin-top: 0px;
+            padding: 5px auto;
+            text-align: center;
+            font-size: 13px;
+            line-height: 20px;
+            color: #fff;
+        }
+
+        .p-group {
+            padding-top: 22px;
+        }
+
+
+
+
+        @media screen and (max-width:767.98px) {
+            .container {
+                max-width: 90%;
+                margin: auto;
+            }
+
+            .text-1 {
+                width: 90%;
+            }
+
+            .text-2 {
+                width: 90%;
+            }
+
+            .pic-box {
+                width: 90%;
+            }
+
+            .taiwan {
+                width: 15%;
+            }
+
+            .button {
+                bottom: 25%;
+            }
+
+            .box {
+                margin: 70px 5px;
+                
+            }
+
+            .tag {
+                top: -9%;
+            }
+
+            .content p {
+                font-size: 14px;
+                line-height: 22px;
+                margin: 0px 5px;
+                font-weight: 200;
+            }
+
+            .h-group {
+                border-left: 5px solid #ffc90c;
+                padding-left: 10px;
+                line-height: 22px;
+            }
+
+            .h-group h4 {
+                font-size: 16px;
+            }
+
+        }
+
+        @media screen and (max-width:575.98px) {
+
+            .container {
+                max-width: 90%;
+                margin: auto;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            .link {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                align-items: center;
+                font-size: 35px;
+                /* line-height: 60px; */
+                color: #000;
+                padding-left: 15px;
+                cursor: pointer;
+            }
+
+            .cross {
+                display: block;
+                align-items: center;
+                font-size: 35px;
+                /* line-height: 60px; */
+                color: #000;
+                padding-left: 15px;
+                cursor: pointer;
+
+            }
+
+            .main {
+                padding-top: 80px;
+            }
+
+
+            .title-2 {
+                width: 80%;
+            }
+
+            .title-4 {
+                width: 45%;
+            }
+
+            .text {
+                font-size: 14px;
+            }
+
+            .text-1 {
+                width: 90%;
+            }
+
+            .text-2 {
+                width: 90%;
+            }
+
+            .button {
+                bottom: 21%;
+                width: 40%;
+                right: 47%;
+            }
+
+            .taiwan {
+                width: 20%;
+                right: 20px;
+                bottom: 47px;
+            }
+
+            .pic-box {
+                width: 90%;
+            }
+
+            .box-wrapper {
+                flex-wrap: wrap;
+            }
+
+            .box {
+                width: 85%;
+                margin: 30px auto;
+            }
+
+
+
+            /* 這邊是manubar */
+            .menubar {
+                z-index: 1000000;
+                font-weight: bold;
+                font-size: 1.6rem;
+                top: 62.5px;
+                left: 0;
+                width: 100%;
+                background: #000;
+                position: absolute;
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .menubar ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                list-style-image: none;
+            }
+
+            .menubar li {
+                display: block;
+                font-size: 14px;
+                padding: 20px 0 20px 0;
+                border-bottom: #dddddd 1px solid;
+            }
+
+            .menubar li:hover {
+                display: block;
+                background: #ffffff;
+                padding: 15px 0 15px 0;
+                border-bottom: #dddddd 1px solid;
+            }
+
+            .menubar ul li a {
+                text-decoration: none;
+                margin: 0px;
+                color: #ffc90c;
+            }
+
+            .menubar ul li a:hover {
+                color: #ffc90c;
+                text-decoration: none;
+            }
+
+            .menubar a {
+                text-decoration: none;
+                color: #ffc90c;
+            }
+
+            .menubar a:hover {
+                text-decoration: none;
+                color: #ffc90c;
+            }
+
+            .footer p {
+                margin-top: 0px;
+                padding: 5px auto;
+                text-align: center;
+                font-size: 8px;
+                line-height: 16px;
+                color: #fff;
+            }
+
+            .top {
+                display: block;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: #ffca0c8c;
+                color: #ffffff;
+                font-size: 1.5rem;
+                text-align: center;
+                line-height: 50px;      
+                cursor: pointer;
+                position: relative;
+                left: 85%;
+                bottom: 10px;
+            }
+            .top:hover{
+                background-color:#ffc90c;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav">
+        <div class="container">
+            <div class="nav-bar d-flex">
+                <div class="logo">
+                    <a href="">
+                        <img src="img/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="d-flex">
+
+                    <ul class="menu d-flex">
+                        <li><a href="">回首頁</a></li>
+                        <li><a href="">執政100天</a></li>
+                        <li><a href="">市民大會考</a></li>
+                        <li><a href="">搶先看結果</a></li>
+                    </ul>
+
+                    <ul class="media d-flex align-items-center">
+                        <li class="link"><a href="">
+                                <img src="img/fb.png" alt="">
+                            </a></li>
+                        <li class="link"><a href="">
+                                <img style="margin-top:2px" src="img/LINE.png" alt="">
+                            </a></li>
+                        <li>
+                            <div class="hamburger">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                            <div class="cross"><i class="fas fa-times"></i></div>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+                <!-- 這邊是rwd menubar -->
+                <div class="menubar">
+                    <ul>
+                        <a href="#">
+                            <li>回首頁</li>
+                        </a>
+                        <a href="#">
+                            <li>執政100天</li>
+                        </a>
+                        <a href="#">
+                            <li>市民大會考</li>
+                        </a>
+                        <a href="#">
+                            <li>搶先看結果</li>
+                        </a>
+                        <a href="#">
+                            <li>FACEBOOK</li>
+                        </a>
+                        <a href="#">
+                            <li>LINE</li>
+                        </a>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="section">
+        <div class="container">
+            <div class="main d-flex align-items-center">
+                <div class="title-1 animated infinite flash delay-1s slow">
+                    <img src="img/light.png" alt="">
+                </div>
+                <div class="title-2">
+                    <img src="img/100day.png" alt="">
+                </div>
+                <div class="title-3">
+                    <img src="img/title.png" alt="">
+                </div>
+                <div class="text">
+                    <p>假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字
+                        假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字</p>
+                </div>
+                <div class="title-4 animated bounceInUp delay-1.5s">
+                    <img src="img/main-01.png" alt="">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="taiwan">
+            <img src="img/taiwan.png" alt="">
+            <div class="button animated heartBeat delay-1s">GO</div>
+        </div>
+    </div>
+
+
+    <div class="section2">
+        <div class="section2-box">
+            <div class="text-1">
+                <p style="font-weight: 800">《遠見》縣市長系列報導新官上任如何拚新政？</p>
+                <h3>世上最「翻」縣市長大選意外創下五大另類紀錄</h3>
+                <!-- <img src="img/text-title.png" alt=""> -->
+            </div>
+            <hr class="line">
+            <div class="text-2" style="margin-top:50px">
+                <p>
+                    假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字
+                    假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字
+                    假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字
+                </p>
+            </div>
+            <div class="pic-box">
+                <img src="img/pic-1.png" alt="">
+            </div>
+            <div class="text-2">
+                <p>
+                    假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字
+                    假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字假字
+                    假字假字假字假字假字假字假字假字假字假字假字假字假字
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section3 ">
+        <div class="container box-wrapper d-flex justify-content-center ">
+            <div class="box">
+                <img src="img/pic-2.png" alt="">
+                <div class="tag">台北市</div>
+                <div class="h-group">
+                    <h4>桃園、花蓮、連江滿意度最高 基隆、北市、屏東進步民眾有感</h4>
+                </div>
+                <div class="content">
+                    <p>備受矚目的《遠見》縣市長施政滿意度調查出爐，今年有三位首長的滿意度都超過七成五，包括桃園市長鄭文燦、花蓮縣長傅崐... </p>
+                </div>
+            </div>
+            <div class="box">
+                <img src="img/pic-3.png" alt="">
+                <div class="tag">桃園市</div>
+                <div class="h-group">
+                    <h4>桃園、花蓮、連江滿意度最高 基隆、北市、屏東進步民眾有感</h4>
+                </div>
+                <div class="content">
+                    <p>備受矚目的《遠見》縣市長施政滿意度調查出爐，今年有三位首長的滿意度都超過七成五，包括桃園市長鄭文燦、花蓮縣長傅崐... </p>
+                </div>
+            </div>
+            <div class="box">
+                <img src="img/pic-4.png" alt="">
+                <div class="tag">花蓮市</div>
+                <div class="h-group">
+                    <h4>桃園、花蓮、連江滿意度最高 基隆、北市、屏東進步民眾有感</h4>
+                </div>
+                <div class="content">
+                    <p>備受矚目的《遠見》縣市長施政滿意度調查出爐，今年有三位首長的滿意度都超過七成五，包括桃園市長鄭文燦、花蓮縣長傅崐... </p>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- <div class="swiper-pagination"></div> -->
+        <div class="top">
+            <span id="goTop"><i class="fas fa-arrow-up"></i></span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="p-group">
+            <p>天下文化 / 小天下 / 未來少年 / 遠見雜誌 / 哈佛商業評論 </br>
+                Copyright© 1999~2019遠見天下文化出版股份有限公司.ｂAll rights reserved.</br>
+                讀者服務部電話：(02)2662-0012　時間：週一至週五9:00～12:30；13:30～17:00 服務信箱：gvm@cwgv.com.tw </p>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/swiper.min.js"></script>
+
+    <script>
+        //menubar
+
+        $(document).ready(function () {
+
+            $(".cross").hide();
+            $(".menubar").hide();
+            $(".hamburger").click(function () {
+                $(".menubar").slideToggle("slow", function () {
+                    $(".hamburger").hide();
+                    $(".cross").show();
+                });
+            });
+
+            $(".cross").click(function () {
+                $(".menubar").slideToggle("slow", function () {
+                    $(".cross").hide();
+                    $(".hamburger").show();
+                });
+            });
+
+        });
+
+        $(function () {
+            $.scrollify({
+                section: ".panel",
+                scrollbars: true,
+                scrollSpeed: 1000,
+
+            });
+
+        });
+        $("#goTop").click(function () {
+            $('html,body').animate({
+                scrollTop: 0
+            }, 700);
+        });
+        var load = function(){
+            $(".section").css("opacity","1");
+        }
+
+        load();
+        
+
+
+
+
+    </script>
+</body>
+
+</html>
